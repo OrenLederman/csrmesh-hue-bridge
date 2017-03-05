@@ -51,7 +51,6 @@ directory=/home/pi/csrmesh-hue-bridge/
 autostart=true
 autorestart=unexpected
 ```
-
 4. Ask supervisor to start new services: sudo supervisorctl reread && sudo supervisorctl update
 5. Make sure the process is up: sudo supervisorctl status
 ```
