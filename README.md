@@ -38,8 +38,20 @@ up the bulb.
 7. Try it out - python csrmesh-hue-bridge.py . Important! The first time you try it, you will need to press the button
 on the HUE Bridge to register your Raspberry Pi
 
-# Optional - supervisord
-TBD
-sudo apt-get install supervisor
-/etc/supervisor/conf.d/csrmesh-hue-bridge.conf
-supervisorctl reread
+# Optional - loading code on boot with supervisor
+If you want the bridge code to start when the RasPi boots, you can use supervisor:
+1. Install supervisor: sudo apt-get install supervisor
+2. Create a config file: sudo touch /etc/supervisor/conf.d/csrmesh-hue-bridge.conf
+3. Edit the file and add the following lines:
+```
+[program:bridge]
+command=python /home/pi/csrmesh-hue-bridge/csrmesh-hue-bridge.py
+directory=/home/pi/csrmesh-hue-bridge/
+autostart=true
+autorestart=unexpected
+```
+4. Ask supervisor to start new services: sudo supervisorctl reread && sudo supervisorctl update
+5. Make sure the process is up: sudo supervisorctl status
+```
+bridge                           RUNNING    pid 5168, uptime 0:01:36
+```
