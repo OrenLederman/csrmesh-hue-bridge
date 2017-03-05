@@ -43,8 +43,7 @@ If you want the bridge code to start when the RasPi boots, you can use superviso
 
 1. Install supervisor: sudo apt-get install supervisor
 2. Create a config file: sudo touch /etc/supervisor/conf.d/csrmesh-hue-bridge.conf
-3. Edit the file and add the following lines:
-```
+3. Edit the file and add the following lines:```
 [program:bridge]
 command=python /home/pi/csrmesh-hue-bridge/csrmesh-hue-bridge.py
 directory=/home/pi/csrmesh-hue-bridge/
