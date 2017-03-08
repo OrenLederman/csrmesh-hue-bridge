@@ -2,6 +2,9 @@ This code enables Philips HUE to control Feit Electric HomeBrite Smart LED bulbs
 equipment). This is done by have a Raspberry Pi monitor the state of an existing Philips HUE lightbulb and then using
 BLE to set the brightness level of a HomeBrite bulb.
 
+In fact, this code uses th broadcast option to change the brightness level of your entire mesh. If you want to control
+individual bulbs, feel free to change the code :)
+
 Note - this code uses the [csrmesh python library](https://github.com/nkaminski/csrmesh) created by Nash Kaminski.
 Thanks Nash!
 
@@ -9,7 +12,7 @@ Thanks Nash!
 This part is straightforward - setup your HUE and HomeBrite systems as usual. Make sure your write down the PIN used
  for configuring the HomeBrite Bulbs.
 
-# Finding the MAC address of your HomeBrite bulb
+# Finding the MAC address of a HomeBrite bulb
 In order to connect to the HoemBrite mesh, you need to know the MAc address of one of the bulbs. To do that, either use
 a phone app (I recommend [nRF Connect](https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp) or the
 hcitool lescan command(see below). Look for a device called "Feit Bulb".
@@ -37,6 +40,9 @@ up the bulb.
 6. Create a .env file and setup the bulb name, PIN code, etc. You can use the env_template file as reference
 7. Try it out - python csrmesh-hue-bridge.py . Important! The first time you try it, you will need to press the button
 on the HUE Bridge to register your Raspberry Pi
+
+If the script fails to connect to the bulb, make sure you exit the HomeBrite app, and perhaps even restart your phone.
+It seems that the app keeps an open connection to the bulb (sometimes?), and therefore blocks other connections.
 
 # Optional - loading code on boot with supervisor
 If you want the bridge code to start when the RasPi boots, you can use supervisor:

@@ -1,4 +1,4 @@
 HUE_BULB_NAME = # Name of HUE bulb to mimic
 HUE_BRIGE_IP = # IP of HUE Bridge
 HOMEBRITE_PIN = # PIN used to configure the Homebrite mesh
-HOMEBRITE_MAC = # BLE MAC address of Homebrite bulb
+HOMEBRITE_MAC = # BLE MAC address of a Homebrite bulb
