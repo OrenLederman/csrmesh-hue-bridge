@@ -4,21 +4,27 @@ import csrmesh as cm
 from time import sleep
 from phue import Bridge
 from settings import *
+import traceback
+
 
 def read_bulb_state():
     state = None
-    b = Bridge(HUE_BRIGE_IP)
+    try:
+        b = Bridge(HUE_BRIGE_IP)
 
-    # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
-    b.connect()
+        # If the app is not registered and the button is not pressed, press the button and call connect() (this only needs to be run a single time)
+        b.connect()
 
-    bulb_state = b.get_light(HUE_BULB_NAME)
-    if 'name' in bulb_state:
-        print(bulb_state['state']['on'])
-        print(bulb_state['state']['bri'])
-        state = bulb_state['state']
-    else:
-        print("Error reading bulb state: ", bulb_state[0]['error'])
+        bulb_state = b.get_light(HUE_BULB_NAME)
+        if 'name' in bulb_state:
+            print(bulb_state['state']['on'])
+            print(bulb_state['state']['bri'])
+            state = bulb_state['state']
+        else:
+            print("Error reading bulb state: ", bulb_state[0]['error'])
+    except Exception as e:
+        s = traceback.format_exc()
+        print("unexpected failure, {} ,{}".format(e, s))
 
     return state
 
