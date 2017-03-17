@@ -57,6 +57,16 @@ directory=/home/pi/csrmesh-hue-bridge/
 autostart=true
 autorestart=unexpected
 ```
+* I also recommend to add a process that will reset bluetooth every couple of minutes (it will sometimes get stuck...)
+* Create another config file: sudo touch /etc/supervisor/conf.d/hcireset.conf
+* Edit it and add the following lines:
+```
+[program:hcireset]
+command=sh -c "while sleep 300; do hciconfig hci0 reset & echo reset; done"
+directory=/tmp
+autostart=true
+autorestart=unexpected
+```
 * Ask supervisor to start new services: sudo supervisorctl reread && sudo supervisorctl update
 * Make sure the process is up: sudo supervisorctl status
 ```
