@@ -68,7 +68,7 @@ autostart=true
 autorestart=unexpected
 ```
 * Ask supervisor to start new services: sudo supervisorctl reread && sudo supervisorctl update
-* Make sure the process is up: sudo supervisorctl status
+* Make sure the processes are up: sudo supervisorctl status
 ```
 bridge                           RUNNING    pid 16625, uptime 0:05:12
 hcireset                         RUNNING    pid 16691, uptime 0:04:54
